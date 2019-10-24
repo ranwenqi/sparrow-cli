@@ -2,7 +2,7 @@
  * @Author: ranwenqi 
  * @Date: 2019-10-22 11:14:00 
  * @Last Modified by: ranwenqi
- * @Last Modified time: 2019-10-23 14:27:50
+ * @Last Modified time: 2019-10-24 15:23:59
  */
 /**
  * 根据命令行运行参数，修改 /config/config.js 里面的项目配置信息
@@ -70,8 +70,6 @@ module.exports = async function (isRelease) {
             }
           })
           resolve();
-          Log.success('环境变量成功改变写入文件成功');
-
         })
       })
   })

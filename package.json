@@ -1,13 +1,13 @@
 {
   "name": "sparrow-cli",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "麻雀团队微信小程序脚手架",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "sparrow-cli": "./index.js"
+    "spr-cli": "./index.js"
   },
   "author": "ranweniq",
   "license": "ISC",
