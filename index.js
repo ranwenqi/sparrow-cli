@@ -14,8 +14,6 @@ const publishWeapp = require('./lib/publish-weapp'); // 创建项目文件
 const previewWeapp = require('./lib/preview-weapp'); // 创建项目文件
 
 
-
-
 /* = config
 -------------------------------------------------------------- */
 
