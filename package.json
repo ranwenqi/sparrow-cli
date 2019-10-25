@@ -1,6 +1,6 @@
 {
   "name": "sparrow-cli",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "麻雀团队微信小程序脚手架",
   "main": "index.js",
   "scripts": {
