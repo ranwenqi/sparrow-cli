@@ -26,17 +26,17 @@ program.version(version, '-v, --version');
 program
   .command('create')
   .description('创建页面或组件')
-  .action((cmd, options) => createProgramFs(cmd));
+  .action((cmd) => createProgramFs(cmd));
 
 program
   .command('publish')
   .description('发布体验版')
-  .action((cmd, options) => publishWeapp(cmd));
+  .action((cmd) => publishWeapp(cmd));
 
 program
-  .command('preview')
+  .command('preview [env]')
   .description('预览')
-  .action((cmd, options) => previewWeapp(cmd));
+  .action((env) => previewWeapp(env));
 
 /* 后续可以根据不同的命令进行不同的处理，可以简单的理解为路由 */
 // program
