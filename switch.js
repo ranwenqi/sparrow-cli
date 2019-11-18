@@ -2,7 +2,7 @@
  * @Author: ranwenqi 
  * @Date: 2019-10-22 11:14:00 
  * @Last Modified by: ranwenqi
- * @Last Modified time: 2019-11-18 17:31:39
+ * @Last Modified time: 2019-11-18 17:45:31
  */
 /**
  * 根据命令行运行参数，修改 /config/config.js 里面的项目配置信息
@@ -22,20 +22,18 @@ module.exports = async function (isRelease) {
     prod: 'prod.json'
   }
   //目标文件
-  const targetFiles = [{
+  const targetFiles = [
+    {
     prefix: '/config/',
     filename: 'config.js'
-  }]
+    },
+    // {
+    // prefix: '/utils/growingio',
+    // filename: 'gioConfig.js'
+    // }
+  ]
 
   const preText = 'module.exports = '
-  // 获取命令行参数
-  // const cliArgs = process.argv.splice(2)
-  // const env = cliArgs[0]
-  // // 判断是否是 prod 环境
-  // const isProd = env.indexOf('prod') > -1 ? true : false;
-
-
-
 
   // 根据不同环境选择不同的源文件
   const sourceFile = isRelease ? sourceFiles.prod : sourceFiles.dev
@@ -48,7 +46,7 @@ module.exports = async function (isRelease) {
           process.exit(1)
         }
         // 获取源文件中的内容
-        const targetConfig = JSON.parse(data)
+        const targetConfig = JSON.parse(data) //{'baseUrl': 'production'}
 
         const {
           baseUrl
@@ -60,10 +58,12 @@ module.exports = async function (isRelease) {
             let config = {
               baseUrl: baseUrl
             }
-            result = preText + JSON.stringify(config, null, 2)
+            result = preText + JSON.stringify(config, null, 2); //module.exports = {"baseUrl": "production"}
+            result = `${result.replace(/\"/g,"\'")};\n`;
+            result = result.replace(/\'(\w+)\'\:/, '$1:');
           }
           // 写入文件(这里只做简单的强制替换整个文件的内容)
-          fs.writeFileSync(configPath.dir_root + item.prefix + item.filename, result, 'utf8', (err) => {
+          fs.writeFileSync(configPath.dir_root + item.prefix + item.filename, result, 'utf-8', (err) => {
             if (err) {
               throw new Error(`error occurs when reading file ${sourceFile}. Error detail: ${err}`)
               process.exit(1)
